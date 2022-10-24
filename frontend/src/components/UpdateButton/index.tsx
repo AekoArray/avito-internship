@@ -5,9 +5,10 @@ import { Button } from 'antd'
 interface UpdateButtonProps {
   onClick: () => void
   loading?: boolean
+  title?: string
 }
 
-const UpdateButton: FC<UpdateButtonProps> = ({ onClick, loading }) => {
+const UpdateButton: FC<UpdateButtonProps> = ({ onClick, loading, title }) => {
   return (
     <Button
       type='primary'
@@ -17,7 +18,7 @@ const UpdateButton: FC<UpdateButtonProps> = ({ onClick, loading }) => {
       size='middle'
       loading={loading}
     >
-      Update
+      {title ?? 'Update'}
     </Button>
   )
 }

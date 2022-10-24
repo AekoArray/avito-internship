@@ -14,7 +14,6 @@ const StoryPage: FC = () => {
   const loading = useTypedSelector((state) => state.loading)
   const story = useTypedSelector((state) => state.currentStory)
 
-  console.log(loading)
   const dispatch = useAppDispatch()
 
   useEffect(() => {
@@ -28,11 +27,15 @@ const StoryPage: FC = () => {
           Link: <Link to={story?.url || ''}>{story?.url}</Link>
         </div>
         <div>Date: {new Date(story?.time ? story?.time * 1000 : 0).toLocaleString()}</div>
+        <div>
+          {story?.descendants ? (
+            <Space>
+              <IconText icon={CommentOutlined} text={`Comments: ${story?.descendants}`} />
+            </Space>
+          ) : null}
+        </div>
       </Card>
       <br />
-      <Space>
-        <IconText icon={CommentOutlined} text={`Comments: ${story?.descendants}`} />
-      </Space>
       <CommentsTree />
     </>
   )

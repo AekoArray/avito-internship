@@ -31,7 +31,7 @@ const MainPage: FC = () => {
   return (
     <>
       <Title>Hacker News</Title>
-      <UpdateButton onClick={updateStories} />
+      <UpdateButton onClick={updateStories} title='Update stories' />
       <StoriesList data={stories} loading={loading} />
     </>
   )

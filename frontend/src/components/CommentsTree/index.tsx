@@ -62,7 +62,7 @@ export const CommentsTree: FC = () => {
   return (
     <>
       <div>
-        <UpdateButton onClick={onUpdateClick} loading={loading} />
+        <UpdateButton onClick={onUpdateClick} loading={loading} title='Update comments' />
       </div>
       <Tree treeData={treeData} onExpand={onExpand} showLine expandedKeys={selectedKeys} />
     </>
