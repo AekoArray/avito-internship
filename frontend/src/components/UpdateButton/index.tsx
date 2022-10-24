@@ -3,18 +3,19 @@ import { SyncOutlined } from '@ant-design/icons'
 import { Button } from 'antd'
 
 interface UpdateButtonProps {
-  isSpin: boolean
   onClick: () => void
+  loading?: boolean
 }
 
-const UpdateButton: FC<UpdateButtonProps> = ({ isSpin, onClick }) => {
+const UpdateButton: FC<UpdateButtonProps> = ({ onClick, loading }) => {
   return (
     <Button
       type='primary'
       shape='round'
-      icon={<SyncOutlined spin={isSpin} />}
+      icon={<SyncOutlined />}
       onClick={onClick}
       size='middle'
+      loading={loading}
     >
       Update
     </Button>

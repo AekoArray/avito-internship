@@ -1,42 +1,38 @@
-import React, { FC, useState } from 'react'
+import React, { FC, useCallback, useEffect } from 'react'
 import { Typography } from 'antd'
 import UpdateButton from '../../components/UpdateButton'
-import NewsList from '../../components/NewsList'
+import StoriesList from '../../components/StoriesList'
+import useTypedSelector from '../../utils/hooks/useTypedSelector'
+import { getStories } from '../../store/actions'
+import useAppDispatch from '../../utils/hooks/useAppDispatch'
+import './index.css'
 
 const { Title } = Typography
 
-const mockData = [
-  {
-    id: 0,
-    name: 'name',
-    rating: '10200',
-    author: 'author',
-    date: '21/03/2022',
-  },
-  {
-    id: 1,
-    name: 'name',
-    rating: '10200',
-    author: 'author',
-    date: '21/03/2022',
-  },
-  {
-    id: 2,
-    name: 'name',
-    rating: '10200',
-    author: 'author',
-    date: '21/03/2022',
-  },
-]
-
 const MainPage: FC = () => {
-  const [isSpin, setSpin] = useState(false)
+  const stories = useTypedSelector((state) => state.stories)
+  const loading = useTypedSelector((state) => state.loading)
+
+  const dispatch = useAppDispatch()
+
+  const updateStories = useCallback(() => {
+    dispatch(getStories())
+  }, [])
+
+  useEffect(() => {
+    updateStories()
+  }, [])
+
+  useEffect(() => {
+    const interval = setInterval(updateStories, 60 * 1000)
+    return () => clearInterval(interval)
+  }, [])
 
   return (
     <>
       <Title>Hacker News</Title>
-      <UpdateButton isSpin={isSpin} onClick={() => setSpin(!isSpin)} />
-      <NewsList data={mockData} />
+      <UpdateButton onClick={updateStories} />
+      <StoriesList data={stories} loading={loading} />
     </>
   )
 }

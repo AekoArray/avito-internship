@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import MainPage from './pages/MainPage'
-import NewsPage from './pages/NewsPage'
+import StoryPage from './pages/StoryPage'
 import './App.css'
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
     <div className='pageContainer'>
       <Router>
         <Switch>
-          <Route path='/news/:id' component={NewsPage} />
+          <Route path='/story/:id' component={StoryPage} />
           <Route exact path='/' component={MainPage} />
         </Switch>
       </Router>

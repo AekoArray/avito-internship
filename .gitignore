@@ -7,4 +7,5 @@ coverage/
 *.iml
 .vscode
 .env
+dist
 
