@@ -47,7 +47,7 @@ export const CommentsTree: FC = () => {
     return formatComments(comments ?? [])
   }, [comments])
 
-  const onExpand = useCallback((expandedKeys, { expanded: bool, node }) => {
+  const onExpand = useCallback((expandedKeys) => {
     setSelectedKeys(expandedKeys)
     dispatch(getComment(expandedKeys[expandedKeys.length - 1]?.toString()))
   }, [])

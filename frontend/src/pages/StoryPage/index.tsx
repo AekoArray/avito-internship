@@ -1,14 +1,12 @@
-import React, { FC, useEffect, useMemo } from 'react'
-import { Avatar, Card, Comment, Space, Spin, Tree, TreeNodeProps } from 'antd'
+import React, { FC, useEffect } from 'react'
+import { Card, Space } from 'antd'
 import { CommentOutlined } from '@ant-design/icons'
 import IconText from '../../components/IconText'
 import { Link, useParams } from 'react-router-dom'
 import useTypedSelector from '../../utils/hooks/useTypedSelector'
 import useAppDispatch from '../../utils/hooks/useAppDispatch'
-import { getComment, getStory, updateComments } from '../../store/actions'
+import { getStory } from '../../store/actions'
 import './index.css'
-import { CommentDisplayed } from '../../types'
-import UpdateButton from '../../components/UpdateButton'
 import { CommentsTree } from '../../components/CommentsTree'
 
 const StoryPage: FC = () => {
