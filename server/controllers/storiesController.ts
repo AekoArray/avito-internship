@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import { getNewStoriesIDs, getStoriesByIDs, getStoryById } from "../api";
-import { getCommentById, getCommentsByParentStory } from "../api/comment";
 import { Story } from "../types";
 import { storiesTimeSortFunction } from "./utils";
 

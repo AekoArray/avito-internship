@@ -10,6 +10,7 @@ export const isResponseSuccess = (response: AxiosResponse): boolean => {
 };
 
 /**
+ * Балансировщик запросов
  * Значения будут на тех же местах, что и агрументы
  *
  * За основу была взята идея с сайта
@@ -25,8 +26,6 @@ export const concurencyBalancer = async <T>(
   listOfArguments: number[],
   asyncOperation: (storyID: number) => Promise<T | null>
 ): Promise<T[]> => {
-  const start = Date.now();
-
   const emptyArray: { value: number; index: number }[] = [];
   const argsCopy = emptyArray.concat(
     listOfArguments.map((value, index) => ({ value, index }))
@@ -53,7 +52,5 @@ export const concurencyBalancer = async <T>(
 
   await Promise.all(promises.map(chainNext));
 
-  const end = Date.now();
-  console.log("Time took with concurrency: ", (end - start) / 1000);
   return result;
 };
