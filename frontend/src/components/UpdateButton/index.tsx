@@ -17,6 +17,7 @@ const UpdateButton: FC<UpdateButtonProps> = ({ onClick, loading, title }) => {
       onClick={onClick}
       size='middle'
       loading={loading}
+      data-testid='button'
     >
       {title ?? 'Update'}
     </Button>

@@ -26,6 +26,7 @@ export const getStories = () => {
 export const getStory = (storyId: string) => {
   return (dispatch: Dispatch) => {
     dispatch({ type: StoryActionType.LOADING })
+    dispatch({ type: StoryActionType.COMMENTS_LOADING })
 
     axios
       .get(`${process.env.REACT_APP_BASE_URL}${API_ROUTES.STORY}/${storyId}`)

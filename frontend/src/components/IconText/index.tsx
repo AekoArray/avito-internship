@@ -7,7 +7,7 @@ interface IconTextProps {
 }
 
 const IconText: FC<IconTextProps> = ({ icon, text }) => (
-  <Space>
+  <Space data-testid='iconText'>
     {React.createElement(icon)}
     {text}
   </Space>

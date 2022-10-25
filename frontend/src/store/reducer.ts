@@ -42,6 +42,7 @@ export const storyReducer = (state = initialState, action: AnyAction): StoryStor
         currentStory: action.payload.story,
         rootComments: action.payload.comments,
         loading: false,
+        commentsLoading: false,
         error: false,
       }
     case StoryActionType.GET_COMMENT: {

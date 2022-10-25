@@ -6,6 +6,7 @@ import { getComment, updateComments } from '../../store/actions'
 import useAppDispatch from '../../utils/hooks/useAppDispatch'
 import UpdateButton from '../UpdateButton'
 import { useParams } from 'react-router-dom'
+import { formatDate } from '../../utils/formatDate'
 
 export const CommentsTree: FC = () => {
   const loading = useTypedSelector((state) => state.commentsLoading)
@@ -17,7 +18,7 @@ export const CommentsTree: FC = () => {
       return formatComments(children)
     }
     if (kids.length !== 0) {
-      return [{ title: <Spin />, key: '1', isLeaf: true }]
+      return [{ title: <Spin />, key: 'key', isLeaf: true }]
     }
     return []
   }
@@ -32,7 +33,7 @@ export const CommentsTree: FC = () => {
               content={item.text}
               author={item.by}
               avatar={<Avatar src='https://joeschmoe.io/api/v1/random' alt='avatar' />}
-              datetime={new Date(item.time * 1000).toLocaleString()}
+              datetime={formatDate(item.time)}
             />
           ),
           key: item.id,
@@ -64,6 +65,7 @@ export const CommentsTree: FC = () => {
       <div>
         <UpdateButton onClick={onUpdateClick} loading={loading} title='Update comments' />
       </div>
+      <br />
       <Tree treeData={treeData} onExpand={onExpand} showLine expandedKeys={selectedKeys} />
     </>
   )

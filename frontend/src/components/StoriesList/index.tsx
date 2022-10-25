@@ -4,6 +4,7 @@ import { CalendarOutlined, CommentOutlined, RiseOutlined } from '@ant-design/ico
 import { Link } from 'react-router-dom'
 import { Story } from '../../types'
 import IconText from '../IconText'
+import { formatDate } from '../../utils/formatDate'
 
 interface StoriesListProps {
   data: Story[]
@@ -27,11 +28,7 @@ const StoriesList: FC<StoriesListProps> = ({ data, loading }) => {
                 text={item?.score?.toString() || ''}
                 key='list-rating'
               />,
-              <IconText
-                icon={CalendarOutlined}
-                text={new Date(item.time * 1000).toLocaleString()}
-                key='list-date'
-              />,
+              <IconText icon={CalendarOutlined} text={formatDate(item.time)} key='list-date' />,
               <IconText
                 icon={CommentOutlined}
                 text={item?.descendants?.toString() || ''}

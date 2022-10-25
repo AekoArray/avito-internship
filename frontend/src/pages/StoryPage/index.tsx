@@ -8,6 +8,8 @@ import useAppDispatch from '../../utils/hooks/useAppDispatch'
 import { getStory } from '../../store/actions'
 import './index.css'
 import { CommentsTree } from '../../components/CommentsTree'
+import { formatDate } from '../../utils/formatDate'
+import { BackButton } from '../../components/BackButton'
 
 const StoryPage: FC = () => {
   const { id } = useParams<{ id: string }>()
@@ -22,21 +24,28 @@ const StoryPage: FC = () => {
 
   return (
     <>
-      <Card title={story?.title} extra={<span className='by'>{story?.by}</span>} loading={loading}>
-        <div>
-          Link: <Link to={story?.url || ''}>{story?.url}</Link>
-        </div>
-        <div>Date: {new Date(story?.time ? story?.time * 1000 : 0).toLocaleString()}</div>
-        <div>
-          {story?.descendants ? (
-            <Space>
-              <IconText icon={CommentOutlined} text={`Comments: ${story?.descendants}`} />
-            </Space>
-          ) : null}
-        </div>
-      </Card>
-      <br />
-      <CommentsTree />
+      <Space direction='vertical' style={{ marginTop: 20 }}>
+        <BackButton />
+        <Card
+          title={story?.title}
+          extra={<span className='by'>{story?.by}</span>}
+          loading={loading}
+        >
+          <div>
+            Link: <Link to={story?.url || ''}>{story?.url}</Link>
+          </div>
+          <div>Date: {formatDate(story?.time || 0)}</div>
+          <div>
+            {story?.descendants ? (
+              <Space>
+                <IconText icon={CommentOutlined} text={`Comments: ${story?.descendants}`} />
+              </Space>
+            ) : null}
+          </div>
+        </Card>
+
+        <CommentsTree />
+      </Space>
     </>
   )
 }
